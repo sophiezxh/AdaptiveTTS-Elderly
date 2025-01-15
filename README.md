@@ -28,17 +28,12 @@ Our approach integrates advanced multimodal emotion recognition by capturing and
     # CLIP
     pip install EPAlign/CLIP
     ```
-3. Download datasets
-    - Download and extract the Emotion Speech Dataset (ESD) following the instructions in the official repository [Emotional-Speech-Data](https://github.com/HLTSingapore/Emotional-Speech-Data)
-    - Download and extract the Real-world Expression Database (RAF-DB) following the instructions in the official website [Real-world Affective Faces Database](http://www.whdeng.cn/raf/model1.html)
-    - Download and extract the [Multimodal EmotionLines Dataset (MELD)](http://web.eecs.umich.edu/~mihalcea/downloads/MELD.Raw.tar.gz)
-4. Preprocess the datasets
-    - ESD: follow the jupyter notebook [preprocess/ESD.ipynb](preprocess/ESD.ipynb)
-5. Download the Pretrained Models
+3. Download datasets: IEMOCAP, CREMA-D, Emo-DB, LJ Speech, MSP, MEAD
+4. Download the Pretrained Models
     - [Waveglow](https://drive.google.com/open?id=1rpK8CzAAirq9sWZhe9nlfvxMF1dRgFbF) for Tacotron2 variant
 
 ## Train & Finetune
-### Emotion Prompt Alignment Module (EP-Align)
+### Emotion Recognition Module (EP-Align)
 1. Train the model
     
     Follow the jupyter notebook [EPAlign/script/EPAlign_prompt_audio_finetune.ipynb](EPAlign/script/EPAlign_prompt_audio_finetune.ipynb), [EPAlign/script/EPAlign_prompt_vision_finetune.ipynb](EPAlign/script/EPAlign_prompt_vision_finetune.ipynb) and [EPAlign/script/EPAlign_prompt_fuse_finetune.ipynb](EPAlign/script/EPAlign_prompt_fuse_finetune.ipynb)
@@ -47,20 +42,20 @@ Our approach integrates advanced multimodal emotion recognition by capturing and
     
     Follow the jupyter notebook [EPAlign/script/extract_emofeature.ipynb](EPAlign/script/extract_emofeature.ipynb)
 
-### Emotion Embedding-Induced TTS (EMI-TTS)
+### Emotional Speech Synthesis Module (EMI-TTS)
 
 Train the model
     
 ```shell
-# Variant Tacotron2
+# Modified Tacotron2
 cd EMITTS/Tacotron2
 python train.py --output_directory=ckpt --log_directory=logs --multi_speaker --multi_emotion --emotion_feature
 ```
 
 ## Inference
-### Emotion Prompt Alignment Module (EP-Align)
+### Emotion Recognition Module (EP-Align)
 Follow the jupyter notebook [EPAlign/script/EPAlign_inference.ipynb](EPAlign/script/EPAlign_inference.ipynb)
-### Emotion Embedding-Induced TTS (EMI-TTS)
+### Emotional Speech Synthesis Module (EMI-TTS)
   Train the model to get the checkpoint files and extract the aligned emotional features before inference (Run EP-Align first.)
   - For Tacotron2 variant, follow the jupyter notebook [EMITTS/Tacotron2/Tacotron2_variant_inference.ipynb](EMITTS/Tacotron2/Tacotron2_variant_inference.ipynb)
 
